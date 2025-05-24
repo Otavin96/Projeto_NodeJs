@@ -1,6 +1,6 @@
 import { app } from "./app";
 import { config } from "dotenv";
-import { conection } from '../database/conection'
+import { dataSource } from "../database/datasource";
 
 config();
 
@@ -11,7 +11,14 @@ const main = async () => {
     console.log(`Servidor rodando na porta: ${port}`);
   });
 
-  conection()
+  dataSource
+    .initialize()
+    .then(() => {
+      console.log("Conexão com o Postgres rodando com sucesso!");
+    })
+    .catch((err) => {
+      console.log("Erro ao iniciar a conexao com o Banco de Dados!", err);
+    });
 };
 
 main().catch((error) => {

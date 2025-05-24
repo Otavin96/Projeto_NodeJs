@@ -14,10 +14,13 @@
     "express": "^5.1.0",
     "pg": "^8.16.0",
     "projeto_nodejs": "file:",
-    "tsconfig-paths": "^4.2.0"
+    "reflect-metadata": "^0.2.2",
+    "tsconfig-paths": "^4.2.0",
+    "typeorm": "^0.3.24"
   },
   "devDependencies": {
     "@types/express": "^5.0.2",
+    "@types/node": "^22.15.21",
     "@types/pg": "^8.15.2"
   }
 }
