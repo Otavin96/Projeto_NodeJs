@@ -1,5 +1,6 @@
 import { app } from "./app";
 import { config } from "dotenv";
+import { conection } from '../database/conection'
 
 config();
 
@@ -9,6 +10,8 @@ const main = async () => {
   app.listen(port, () => {
     console.log(`Servidor rodando na porta: ${port}`);
   });
+
+  conection()
 };
 
 main().catch((error) => {

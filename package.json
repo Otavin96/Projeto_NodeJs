@@ -12,9 +12,12 @@
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "pg": "^8.16.0",
+    "projeto_nodejs": "file:",
     "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.2"
+    "@types/express": "^5.0.2",
+    "@types/pg": "^8.15.2"
   }
 }
