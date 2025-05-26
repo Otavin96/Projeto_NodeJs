@@ -1,14 +1,11 @@
+import "@/common/infrastructure/container/index";
+import { env } from "../env";
+import { dataSource } from "../typeorm";
 import { app } from "./app";
-import { config } from "dotenv";
-import { dataSource } from "../database/datasource";
-
-config();
-
-const port = process.env.PORT;
 
 const main = async () => {
-  app.listen(port, () => {
-    console.log(`Servidor rodando na porta: ${port}`);
+  app.listen(env.PORT, () => {
+    console.log(`Servidor rodando na porta: ${env.PORT}`);
   });
 
   dataSource
