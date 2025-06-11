@@ -1,35 +1,47 @@
 import {
-  Column,
-  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
-import { UserModel } from "../../../domain/models/user.model";
+import { Address } from "./address.entity";
+import { Pet } from "@/pets/infrastructure/typeorm/entities/pet.entity";
+import { Adoption } from "@/adoptions/infrastructure/typeorm/entities/adoption.entity";
 
 @Entity("users")
-export class User implements UserModel {
+export class User {
   @PrimaryGeneratedColumn("uuid")
-  id!: string;
+  id: string;
 
   @Column()
-  name!: string;
+  name: string;
+
+  @Column({ unique: true })
+  email: string;
 
   @Column()
-  email!: string;
+  password: string;
 
   @Column()
-  password!: string;
+  phone: string;
 
-  @Column()
-  phone!: string;
+  @Column(() => Address)
+  address: Address;
 
   @Column({ nullable: true })
   avatar?: string;
 
+  @OneToMany(() => Pet, (pet) => pet.owner)
+  pets: Pet[];
+
+  @OneToMany(() => Adoption, (adoption) => adoption.adopter)
+  adoptions: Adoption[];
+
   @CreateDateColumn()
-  created_at!: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updated_at!: Date;
+  updated_at: Date;
 }

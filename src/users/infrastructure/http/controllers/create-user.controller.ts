@@ -13,9 +13,15 @@ export async function CreateUserController(
     email: z.string(),
     password: z.string(),
     phone: z.string(),
+    address: z.object({
+      street: z.string(),
+      numberHouse: z.string(),
+      city: z.string(),
+      state: z.string(),
+    }),
   });
 
-  const { name, email, password, phone } = dataValidation(
+  const { name, email, password, phone, address } = dataValidation(
     createUserSchemaBody,
     request.body
   );
@@ -28,6 +34,7 @@ export async function CreateUserController(
     email,
     password,
     phone,
+    address,
   });
 
   return response.status(201).json(user);
