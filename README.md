@@ -25,3 +25,6 @@
 #BUCKET_NAME=apipetshop
 #AWS_ACCESS_KEY_ID=91db4f8c7a06a33720cf2d7077c98f46
 #AWS_SECRET_ACCESS_KEY=02a2c2871c3c1585af396cbb5d63f314928da3f20ce6098078500b21c377992d
+
+#npm run typeorm -- migration:generate src/common/infrastructure/typeorm/migrations/CreateDatabase -- -d src/common/infrastructure/typeorm/index.ts
+#npm run typeorm -- migration:run -- -d src/common/infrastructure/typeorm/index.ts
