@@ -6,6 +6,8 @@ import { CreatePetsUseCase } from "@/pets/application/usecase/create-pets-usecas
 import { DeletePetsUseCase } from "@/pets/application/usecase/delete-pets-usecase";
 import { SearchPetsUseCase } from "@/pets/application/usecase/search-pets-usecase";
 import { UpdatePetsUseCase } from "@/pets/application/usecase/update-pets-usecase";
+import { MyPetsUseCase } from "@/pets/application/usecase/my-pets-usecase";
+import { GetPetUseCase } from "@/pets/application/usecase/get-pet-usecase";
 
 container.registerSingleton("PetsRepository", PetsTypeormRepository);
 
@@ -21,3 +23,7 @@ container.registerSingleton("DeletePetsUseCase", DeletePetsUseCase.UseCase);
 container.registerSingleton("UpdatePetsUseCase", UpdatePetsUseCase.UseCase);
 
 container.registerSingleton("SearchPetsUseCase", SearchPetsUseCase.UseCase);
+
+container.registerSingleton("MyPetsUseCase", MyPetsUseCase.UseCase);
+
+container.registerSingleton("GetPetUseCase", GetPetUseCase.UseCase);

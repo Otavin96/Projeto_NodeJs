@@ -13,12 +13,14 @@ export async function CreateUserController(
     email: z.string(),
     password: z.string(),
     phone: z.string(),
-    address: z.object({
-      street: z.string(),
-      numberHouse: z.string(),
-      city: z.string(),
-      state: z.string(),
-    }),
+    address: z
+      .object({
+        street: z.string().optional(),
+        numberHouse: z.string().optional(),
+        city: z.string().optional(),
+        state: z.string().optional(),
+      })
+      .optional(),
   });
 
   const { name, email, password, phone, address } = dataValidation(

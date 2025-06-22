@@ -9,8 +9,8 @@ export async function CreateAdoptionController(
   response: Response
 ): Promise<Response> {
   const createAdoptionSchemaBody = z.object({
-    pet: z.string().uuid(),
-    adopter: z.string().uuid(),
+    pet: z.string(),
+    adopter: z.string(),
   });
 
   const { pet, adopter } = dataValidation(

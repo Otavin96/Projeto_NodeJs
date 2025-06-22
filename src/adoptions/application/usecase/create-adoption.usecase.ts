@@ -1,15 +1,14 @@
-import { Pet } from "@/pets/infrastructure/typeorm/entities/pet.entity";
 import { AdoptionOutput } from "../dtos/adoption.dto";
-import { User } from "@/users/infrastructure/typeorm/entities/users.entity";
 import { inject, injectable } from "tsyringe";
 import { AdoptionRepository } from "@/adoptions/repositories/adoption-repository";
 import { BadRequestError } from "@/common/domain/errors/bad-request.error";
 import { PetsRepository } from "@/pets/repositories/pets-repository";
+import { UsersRepository } from "@/users/repositories/users.repositories";
 
 export namespace CreateAdoptionUseCase {
   export type Input = {
-    pet: Pet;
-    adopter: User;
+    pet: string;
+    adopter: string;
   };
 
   export type Output = AdoptionOutput;
@@ -21,17 +20,28 @@ export namespace CreateAdoptionUseCase {
       private adoptionRepository: AdoptionRepository,
 
       @inject("PetsRepository")
-      private petsRepository: PetsRepository
+      private petsRepository: PetsRepository,
+
+      @inject("UsersRepository")
+      private usersRepository: UsersRepository
     ) {}
 
     async execute(input: Input): Promise<Output> {
-      const pet = await this.petsRepository.findById(input.pet.id);
+      const pet = await this.petsRepository.findById(input.pet);
+      const adopter = await this.usersRepository.findById(input.adopter);
 
-      if (!input.pet || !input.adopter) {
+      if (!pet || !adopter) {
         throw new BadRequestError("Pet and adopter must be provided");
       }
 
-      const adoption = this.adoptionRepository.create(input);
+      if (!pet.available) {
+        throw new BadRequestError("Pet is not available for adoption");
+      }
+
+      const adoption = this.adoptionRepository.create({
+        pet,
+        adopter,
+      });
 
       const createdAdoption = await this.adoptionRepository.insert(adoption);
 

@@ -14,4 +14,6 @@ export type CreatePetProps = {
 };
 
 export interface PetsRepository
-  extends RepositoryInterface<PetModel, CreatePetProps> {}
+  extends RepositoryInterface<PetModel, CreatePetProps> {
+  myPets(id: string): Promise<PetModel[]>;
+}

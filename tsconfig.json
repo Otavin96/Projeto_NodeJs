@@ -14,14 +14,12 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "typeRoots": ["@types", "./node_modules/@types"],
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "strictPropertyInitialization": false,
-    "strict": true,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "resolveJsonModule": true

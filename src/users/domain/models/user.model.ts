@@ -1,4 +1,6 @@
+import { Pet } from "@/pets/infrastructure/typeorm/entities/pet.entity";
 import { Address } from "@/users/infrastructure/typeorm/entities/address.entity";
+import { User } from "@/users/infrastructure/typeorm/entities/users.entity";
 
 export interface UserModel {
   id: string;

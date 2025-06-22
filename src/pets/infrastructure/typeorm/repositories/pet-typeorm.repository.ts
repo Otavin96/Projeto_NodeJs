@@ -29,8 +29,24 @@ export class PetsTypeormRepository implements PetsRepository {
     return this.petsRepository.save(model);
   }
 
-  async findById(id: string): Promise<PetModel> {
+  async findById(id: string): Promise<Pet> {
     return this._get(id);
+  }
+
+  async myPets(userId: string): Promise<PetModel[]> {
+    const pets = await this.petsRepository.find({
+      where: {
+        owner: {
+          id: userId,
+        },
+      },
+    });
+
+    // if (!pets || pets.length === 0) {
+    //   throw new NotFoundError("This user does not have any registered pets");
+    // }
+
+    return pets;
   }
 
   async update(model: PetModel): Promise<PetModel> {
@@ -77,7 +93,7 @@ export class PetsTypeormRepository implements PetsRepository {
     };
   }
 
-  protected async _get(id: string): Promise<PetModel> {
+  protected async _get(id: string): Promise<Pet> {
     const pet = await this.petsRepository.findOneBy({ id });
 
     if (!pet) {

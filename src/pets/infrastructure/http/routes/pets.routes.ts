@@ -4,6 +4,8 @@ import { CreatePetsController } from "../controller/create-pets-controller";
 import { DeletePetsController } from "../controller/delete-pets-controller";
 import { SearchPetsController } from "../controller/search-pets-controller";
 import { UpdatePetsController } from "../controller/update-pets-controller";
+import { MyPetsController } from "../controller/my-pets-controller";
+import { GetPetController } from "../controller/get-pet-controller";
 
 const petsRoutes = Routes.Router();
 
@@ -15,12 +17,20 @@ petsRoutes.get("/", async (req, res) => {
   SearchPetsController(req, res);
 });
 
+petsRoutes.get("/mypets/:id", async (req, res) => {
+  MyPetsController(req, res);
+});
+
 petsRoutes.put("/:id", upload.array("images"), async (req, res) => {
   UpdatePetsController(req, res);
 });
 
 petsRoutes.delete("/:id", async (req, res) => {
   DeletePetsController(req, res);
+});
+
+petsRoutes.get("/:id", async (req, res) => {
+  GetPetController(req, res);
 });
 
 export { petsRoutes };

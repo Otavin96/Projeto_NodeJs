@@ -1,11 +1,11 @@
 import { RepositoryInterface } from "@/common/domain/repositories/repository.interface";
 import { Pet } from "@/pets/infrastructure/typeorm/entities/pet.entity";
-import { User } from "@/users/infrastructure/typeorm/entities/users.entity";
 import { AdoptionModel } from "../domain/adoption-model";
+import { UserModel } from "@/users/domain/models/user.model";
 
 export interface CreateAdotionProps {
   pet: Pet;
-  adopter: User;
+  adopter: UserModel;
 }
 
 export interface AdoptionRepository

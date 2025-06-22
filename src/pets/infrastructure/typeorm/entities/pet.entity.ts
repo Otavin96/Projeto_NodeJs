@@ -42,7 +42,7 @@ export class Pet {
   owner: User;
 
   @OneToOne(() => Adoption, (adoption) => adoption.pet)
-  adoption: Adoption;
+  adoption?: Adoption;
 
   @CreateDateColumn()
   created_at: Date;
